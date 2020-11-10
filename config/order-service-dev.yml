@@ -1,6 +1,6 @@
 spring:
   application:
-    name: zuul
+    name: order-service
   cloud:
     config:
       override-none: true
@@ -11,30 +11,17 @@ spring:
     password: admin
 
 server:
-  port: 3001
+  port: 8201  
   
 eureka:
   client:
     service-url:
       defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
-
-zuul:
-  retryable: true
+      
+feign:
+  hystrix:
+    enabled: true
     
-ribbon:
-  ConnectTimeout: 1000
-  ReadTimeout: 1000
-  MaxAutoRetriesNextServer: 1
-  MaxAutoRetries: 1
-  
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 500
-            
 management:
   endpoints:
     web:
